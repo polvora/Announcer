@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Steam Redirect</title>
+<script>
+function getQueryParams(qs) {
+    qs = qs.split("+").join(" ");
+
+    var params = {}, tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])]
+            = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+}
+var params = getQueryParams(document.location.search);
+function redirect() {
+	if (typeof params.ip === "undefined" || typeof params.port === "undefined") return;
+	
+	var redirect = "steam://connect/" + params.ip + ":" + params.port;
+	if (typeof params.pw != "undefined") redirect = redirect + "/" + params.pw;
+	
+	window.location = redirect;
+}
+redirect();
+setTimeout(function(){ window.history.back() }, 2000);
+</script>
+</head>
+<body bgcolor="#333333">
+<font face="verdana" color="white"><b><p id="info" align=center>Redirecting you to your location...</p></b></font>
+<script>
+	var string;
+	if (typeof params.ip === "undefined" || typeof params.port === "undefined") 
+		string = "URL must be filled with IP and Port params to work.";
+	else 
+		string = "You are beeing redirected to " + params.ip + ":" + params.port + " server...";
+	
+	document.getElementById("info").innerHTML = string;
+</script>
+</body>
+</html>
