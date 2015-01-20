@@ -1,4 +1,4 @@
-#pragma dynamic 2048 // Increases stack space to 4mb, needed for saving user announces
+#pragma dynamic 2048 // Increases stack space to 4mb, needed for saving user announcements
 
 #include <sourcemod>
 #include <steamcore>
@@ -12,16 +12,15 @@ public Plugin:myinfo =
 {
 	name = PLUGIN_NAME,
 	author = PLUGIN_AUTHOR,
-	description = "Steam group announces via game commands.",
+	description = "Steam group announcements via game commands.",
 	version = PLUGIN_VERSION,
 	url = PLUGIN_URL
 }
 
-new String:announces[32][128];
+new String:announcements[32][128];
 new ReplySource:sources[32];
 
 new Handle:cvarSteamGroupID;
-new Handle:cvarTimeLimit;
 new Handle:cvarCallerInfo;
 new Handle:cvarServerInfo;
 new Handle:cvarRevealPass;
@@ -50,24 +49,28 @@ public Action:cmdAnnounce(client, args)
 		ReplyToCommand(client, "\x07FFF047There is no steam group to announce.");
 		return Plugin_Handled;
 	}
-	if (GetCmdArgs() == 0 && strcmp(announces[client], "") == 0)
+	if (GetCmdArgs() == 0)
 	{
-		ReplyToCommand(client, "\x07FFF047No previous message set: \x01sm_an [message]");
-		return Plugin_Handled;
+		if (strcmp(announcements[client], "") == 0)
+		{
+			ReplyToCommand(client, "\x07FFF047No previous message set: \x01sm_an [message]");
+			return Plugin_Handled;
+		}
 	}
+	else GetCmdArgString(announcements[client], sizeof(announcements[]));
+	
 	sources[client] = GetCmdReplySource();
-	GetCmdArgString(announces[client], sizeof(announces[]));
 	
 	decl String:body[1024];
 	GetBodySting(client, body, sizeof(body));
 	
-	steamGroupAnnounce(client, announces[client], body, steamGroup, callback);
+	steamGroupAnnounce(client, announcements[client], body, steamGroup, callback);
 	return Plugin_Handled;
 }
 
 public callback(client, bool:success, errorCode, any:data)
 {
-	if (client > 0 && !IsClientInGame(client)) return;
+	if (sources[client] == SM_REPLY_TO_CHAT && client != 0 && !IsClientInGame(client)) return;
 
 	SetCmdReplySource(sources[client]);
 	if (success) ReplyToCommand(client, "\x07FFF047Your message was successfully announced.");
@@ -76,6 +79,11 @@ public callback(client, bool:success, errorCode, any:data)
 		if (errorCode != 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
 		else ReplyToCommand(client, "\x07FFF047There was an error announcing your message :(.");
 	}
+}
+
+public OnClientDisconnect(client)
+{
+	strcopy(announcements[client], sizeof(announcements[]), "");
 }
 
 GetBodySting(client, String:body[], maxSize)
@@ -151,7 +159,7 @@ GetBodySting(client, String:body[], maxSize)
 			Format(buffer, sizeof(buffer), "&pw=%s", pw);
 			StrCat(finalRedirectURL, sizeof(finalRedirectURL), buffer);
 		}
-		Format(buffer, sizeof(buffer), "[url=%s][h1][b][u][Click here to join][/u][/b][/h1][/url]", finalRedirectURL);
+		Format(buffer, sizeof(buffer), "[url=%s][h1][b][u][Join Server][/u][/b][/h1][/url]", finalRedirectURL);
 		StrCat(body, maxSize, buffer);
 		StrCat(body, maxSize, "\n");
 	}
