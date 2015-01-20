@@ -20,8 +20,23 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 * `an_redirecturl` URL pointing to a Steam Browser Protocol forwarder. This allows you to display the "Join Server" link. This is explained in detail below. _(default = "")_
 
-This will help:   
-![Cvars Explained](https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
+##### Legend
+![Cvars Explained]    (https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
+
+##### an_redirecturl
+Now the redirect URL, is a just an URL pointing to a site hosting [r.html](https://bitbucket.org/Polvora/announcer/downloads/r.html) which function is to receive the server IP, Port and Password as GET parameters and redirect the user to the server with a Steam Browser Protocol request (steam://connect/...), the reason to do this is because Steam doesn't allow Steam redirects inside its own site, it's dumb i know.  
+
+For example if you host r.html in your dropbox public folder, you would have:
+
+    an_redirecturl "https://dl.dropboxusercontent.com/u/69397859/r.html"
+
+Then in the announcement description the "Click Here to Join" link:
+
+    https://dl.dropboxusercontent.com/u/69397859/r.html?ip=233.143.43.54&port=27015
+
+And finally this page, would redirect you to the server:
+
+    steam://connect/233.143.43.54:27015/
 
 ### Install
 #####Requeriments
