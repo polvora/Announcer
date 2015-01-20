@@ -73,11 +73,11 @@ public callback(client, bool:success, errorCode, any:data)
 	if (sources[client] == SM_REPLY_TO_CHAT && client != 0 && !IsClientInGame(client)) return;
 
 	SetCmdReplySource(sources[client]);
-	if (success) ReplyToCommand(client, "\x07FFF047Your message was successfully announced.");
+	if (success) ReplyToCommand(client, "\x07FFF047Your announcement was successfully posted.");
 	else
 	{
 		if (errorCode != 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
-		else ReplyToCommand(client, "\x07FFF047There was an error announcing your message :(.");
+		else ReplyToCommand(client, "\x07FFF047There was an error posting your announcement :(.");
 	}
 }
 

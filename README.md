@@ -2,10 +2,10 @@
 Plugin to post Steam group announcements from the comfort of the game chat.
 
 ![Example Command](https://bitbucket.org/Polvora/announcer/downloads/example1.png)  
-![Example Annoucement](https://bitbucket.org/Polvora/announcer/downloads/example2.png)
+![Example Announcement](https://bitbucket.org/Polvora/announcer/downloads/example2.png)
 
 ### Client Commands
-* `sm_an [message]`  Posts an annoucements with the message as title, if a message is not specified it will post the previous annoucement.
+* `sm_an [message]`  Posts an announcements with the message as title, if a message is not specified it will post the previous announcement.
 
 ### ConVars
 ####Mandatory
@@ -16,7 +16,7 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 * `an_serverinfo`  Displays server name, n° of players and IP in the announcement description. _(default = 1)_
 
-* `an_revealpassword` Displays server password in the annoucement description. _(default = 0)_
+* `an_revealpassword` Displays server password in the announcement description. _(default = 0)_
 
 * `an_redirecturl` URL pointing to a Steam Browser Protocol forwarder. This allows you to display the "Join Server" link. This is explained in detail below. _(default = "")_
 
@@ -39,12 +39,12 @@ And finally this page, would redirect you to the server:
     steam://connect/233.143.43.54:27015/
 
 ### Install
-#####Requeriments
+#####Requirements
 * [A working version of Sourcemod](http://www.sourcemod.net/downloads.php).
 * [SteamTools extension](https://forums.alliedmods.net/showthread.php?t=170630) (Aleady required by SteamCore)
 * [SteamCore library plugin](https://bitbucket.org/Polvora/steamcore/overview).
 
-When you fulfill the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
+When you fulfil the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
 
 ### Download
 Compiled version: [announcer.smx](https://bitbucket.org/Polvora/announcer/downloads/announcer.smx). Also available in downloads section.  
@@ -54,4 +54,4 @@ If you want to compile the code yourself you have to add the include file `steam
 ###Changelog
 > [20/01/2015] v1.0 
 
-> * Publicación Inicial.
+> * Initial Release.
