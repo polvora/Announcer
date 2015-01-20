@@ -20,7 +20,7 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 * `an_redirecturl` URL pointing to a Steam Browser Protocol forwarder. This allows you to display the "Join Server" link. This is explained in detail below. _(default = "")_
 
-This will help:
+This will help:   
 ![Cvars Explained](https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
 
 ### Install
