@@ -24,7 +24,7 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 ![Cvars Explained]    (https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
 
 ##### an_redirecturl
-Now the redirect URL, is a just an URL pointing to a site hosting [r.html](https://bitbucket.org/Polvora/announcer/downloads/r.html) which function is to receive the server IP, Port and Password as GET parameters and redirect the user to the server with a Steam Browser Protocol request (steam://connect/...), the reason to do this is because Steam doesn't allow Steam redirects inside its own site, it's dumb i know.  
+Now the redirect URL is just an URL pointing to a site hosting [r.html](https://bitbucket.org/Polvora/announcer/downloads/r.html) which function is to receive the server IP, Port and Password as GET parameters and redirect the user to the server with a Steam Browser Protocol request (steam://connect/...), the reason to do this is because Steam doesn't allow Steam redirects inside its own site, it's dumb i know.  
 
 For example if you host r.html in your dropbox public folder, you would have:
 
@@ -41,7 +41,7 @@ And finally this page, would redirect you to the server:
 ### Install
 #####Requeriments
 * [A working version of Sourcemod](http://www.sourcemod.net/downloads.php).
-* [SteamTools extension](https://forums.alliedmods.net/showthread.php?t=170630)
+* [SteamTools extension](https://forums.alliedmods.net/showthread.php?t=170630) (Aleady required by SteamCore)
 * [SteamCore library plugin](https://bitbucket.org/Polvora/steamcore/overview).
 
 When you fulfill the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
