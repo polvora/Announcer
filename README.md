@@ -50,3 +50,8 @@ When you fulfill the requirements, just install as any other plugin, copy announ
 Compiled version: [announcer.smx](https://bitbucket.org/Polvora/announcer/downloads/announcer.smx). Also available in downloads section.  
 
 If you want to compile the code yourself you have to add the include file `steamcore.inc` (from Steam Core, duh) inside `scripting/include` and then compile. _(You can't use includes with the online compiler)_
+
+###Changelog
+> [20/01/2015] v1.0 
+
+> * Publicación Inicial.
