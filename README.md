@@ -41,7 +41,6 @@ And finally this page, would redirect you to the server:
 ### Install
 #####Requirements
 * [A working version of Sourcemod](http://www.sourcemod.net/downloads.php).
-* [SteamTools extension](https://forums.alliedmods.net/showthread.php?t=170630) (Aleady required by SteamCore)
 * [SteamCore library plugin](https://bitbucket.org/Polvora/steamcore/overview).
 
 When you fulfil the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
@@ -52,6 +51,6 @@ Compiled version: [announcer.smx](https://bitbucket.org/Polvora/announcer/downlo
 If you want to compile the code yourself you have to add the include file `steamcore.inc` (from SteamCore, duh) inside `scripting/include` and then compile. _(You can't use includes with the online compiler)_
 
 ###Changelog
-> [20/01/2015] v1.0 
+> [04/02/2015] v1.0 
 
 > * Initial Release.

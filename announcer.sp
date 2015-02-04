@@ -29,15 +29,14 @@ new Handle:cvarRedirectURL;
 public OnPluginStart()
 {
 	// Commands
-	RegAdminCmd("sm_an", cmdAnnounce, ADMFLAG_CONFIG, "");
+	RegAdminCmd("sm_an", cmdAnnounce, ADMFLAG_CONFIG, "Posts a new announcement to a Steam group.");
 	
 	// Convars
-	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.");
-	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.");
-	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.");
-	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.");
-	cvarRedirectURL = CreateConVar("an_redirecturl", "", "URL to parse HTTP GET requests to Steam requests.");
-	
+	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.", FCVAR_PLUGIN);
+	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
+	cvarRedirectURL = CreateConVar("an_redirecturl", "", "URL to parse HTTP GET requests to Steam requests.", FCVAR_PLUGIN);
 }
 
 public Action:cmdAnnounce(client, args)
