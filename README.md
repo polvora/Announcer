@@ -24,6 +24,7 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 ##### Legend
 ![Cvars Explained]    (https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
+![an_extrainfo] (https://bitbucket.org/Polvora/announcer/downloads/an_extrainfo.png)
 
 ##### an_redirecturl
 Now the redirect URL is just an URL pointing to a site hosting [r.html](https://bitbucket.org/Polvora/announcer/downloads/r.html) which function is to receive the server IP, Port and Password as GET parameters and redirect the user to the server with a Steam Browser Protocol request (steam://connect/...), the reason to do this is because Steam doesn't allow Steam redirects inside its own site, it's dumb i know.  
