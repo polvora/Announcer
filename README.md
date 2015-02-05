@@ -59,4 +59,4 @@ If you want to compile the code yourself you have to add the include file `steam
 
 > [05/02/2015] v1.1
 
-> * Added cvar an_extrainfo.
+> * Added Cvar an_extrainfo.
