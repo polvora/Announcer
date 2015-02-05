@@ -25,6 +25,7 @@ new Handle:cvarCallerInfo;
 new Handle:cvarServerInfo;
 new Handle:cvarRevealPass;
 new Handle:cvarRedirectURL;
+new Handle:cvarExtraInfo;
 
 public OnPluginStart()
 {
@@ -37,6 +38,7 @@ public OnPluginStart()
 	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarRedirectURL = CreateConVar("an_redirecturl", "", "URL to parse HTTP GET requests to Steam requests.", FCVAR_PLUGIN);
+	cvarExtraInfo = CreateConVar("an_extrainfo", "", "Extra text to add at the start of the announcement description.", FCVAR_PLUGIN);
 }
 
 public Action:cmdAnnounce(client, args)
@@ -60,7 +62,7 @@ public Action:cmdAnnounce(client, args)
 	
 	sources[client] = GetCmdReplySource();
 	
-	decl String:body[1024];
+	decl String:body[2048];
 	GetBodySting(client, body, sizeof(body));
 	
 	steamGroupAnnounce(client, announcements[client], body, steamGroup, callback);
@@ -88,14 +90,21 @@ public OnClientDisconnect(client)
 GetBodySting(client, String:body[], maxSize)
 {
 	strcopy(body, maxSize, "");
+	decl String:buffer[1024];
+	
+	GetConVarString(cvarExtraInfo, buffer, sizeof buffer);
+	if (!StrEqual(buffer, ""))
+	{
+		StrCat(body, maxSize, buffer);
+		StrCat(body, maxSize, "\n");
+	}
 	
 	if (client == 0)
 	{
-		strcopy(body, maxSize, "\n");
+		StrCat(body, maxSize, "\n");
 		return;
 	}
 	
-	decl String:buffer[256];
 	if (GetConVarBool(cvarCallerInfo))
 	{
 		decl String:clientName[32];

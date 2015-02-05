@@ -20,6 +20,8 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 * `an_redirecturl` URL pointing to a Steam Browser Protocol forwarder. This allows you to display the "Join Server" link. This is explained in detail below. _(default = "")_
 
+* `an_extrainfo` Extra text to add at the start of the announcement description. _(default = "")_
+
 ##### Legend
 ![Cvars Explained]    (https://bitbucket.org/Polvora/announcer/downloads/cvars_explained.png)
 
@@ -54,3 +56,7 @@ If you want to compile the code yourself you have to add the include file `steam
 > [04/02/2015] v1.0 
 
 > * Initial Release.
+
+> [05/02/2015] v1.1
+
+> * Added cvar an_extrainfo.
