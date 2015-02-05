@@ -46,6 +46,7 @@ And finally this page, would redirect you to the server:
 * [A working version of Sourcemod](http://www.sourcemod.net/downloads.php).
 * [SteamCore library plugin](https://bitbucket.org/Polvora/steamcore/overview).
 
+_**DON'T FORGET TO SETUP STEAMCORE**_
 When you fulfil the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
 
 ### Download
