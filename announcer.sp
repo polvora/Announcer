@@ -1,10 +1,10 @@
-#pragma dynamic 2048 // Increases stack space to 4mb, needed for saving user announcements
+#pragma dynamic 2048 // Increases stack space to 8kb, needed for saving user announcements
 
 #include <sourcemod>
 #include <steamcore>
 
 #define PLUGIN_URL ""
-#define PLUGIN_VERSION "1.0"
+#define PLUGIN_VERSION "1.2"
 #define PLUGIN_NAME "Announcer"
 #define PLUGIN_AUTHOR "Statik"
 
@@ -30,9 +30,11 @@ new Handle:cvarExtraInfo;
 public OnPluginStart()
 {
 	// Commands
+	RegAdminCmd("sm_announcer", cmdAnnounce, ADMFLAG_CONFIG, "Posts a new announcement to a Steam group.");
 	RegAdminCmd("sm_an", cmdAnnounce, ADMFLAG_CONFIG, "Posts a new announcement to a Steam group.");
 	
 	// Convars
+	CreateConVar("announcer_version", PLUGIN_VERSION, "Announcer Version", FCVAR_PLUGIN | FCVAR_SPONLY | FCVAR_DONTRECORD | FCVAR_NOTIFY);
 	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.", FCVAR_PLUGIN);
 	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
@@ -65,7 +67,7 @@ public Action:cmdAnnounce(client, args)
 	decl String:body[2048];
 	GetBodySting(client, body, sizeof(body));
 	
-	steamGroupAnnounce(client, announcements[client], body, steamGroup, callback);
+	SteamGroupAnnouncement(client, announcements[client], body, steamGroup, callback);
 	return Plugin_Handled;
 }
 
@@ -77,8 +79,8 @@ public callback(client, bool:success, errorCode, any:data)
 	if (success) ReplyToCommand(client, "\x07FFF047Your announcement was successfully posted.");
 	else
 	{
-		if (errorCode != 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
-		else ReplyToCommand(client, "\x07FFF047There was an error posting your announcement :(.");
+		if (errorCode == 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
+		else ReplyToCommand(client, "\x07FFF047There was an error \x010x%02x \x07FFF047while posting your announcement :(", errorCode);
 	}
 }
 
@@ -107,7 +109,7 @@ GetBodySting(client, String:body[], maxSize)
 	
 	if (GetConVarBool(cvarCallerInfo))
 	{
-		decl String:clientName[32];
+		decl String:clientName[64]; 
 		decl String:clientCommunityID[32];
 		decl String:clientSteamID[32];
 		

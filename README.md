@@ -11,10 +11,15 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 ####Mandatory
 * `an_steamgroupid` ID of the Steam Group where announcements are meant to be posted. [Obtain your group ID here](http://fennec.limetech.org/groupid.php). _(default = "")_
 
+#####From SteamCore
+
+* `sc_username` Steam account username.
+* `sc_password` Steam account password.
+
 #### Optional
 * `an_callerinfo` Displays client profile and Steam ID in the announcement description. _(default = 1)_
 
-* `an_serverinfo`  Displays server name, n° of players and IP in the announcement description. _(default = 1)_
+* `an_serverinfo`  Displays server name, nÂ° of players and IP in the announcement description. _(default = 1)_
 
 * `an_revealpassword` Displays server password in the announcement description. _(default = 0)_
 
@@ -62,3 +67,11 @@ If you want to compile the code yourself you have to add the include file `steam
 > [05/02/2015] v1.1
 
 > * Added Cvar an_extrainfo.
+
+> [29/03/2015] v1.2
+
+> * **[steamcore]** Fixed critical bug that made announcements stopped working after a few calls.
+> * Fixed wrong eror messages being displayed.
+> * More detailed information on error messages.
+> * Added sm\_announce as an alias for sm\_an.
+> * Long profile names are now displayed correctly on the announcements description.
