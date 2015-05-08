@@ -73,7 +73,7 @@ public Action:cmdAnnounce(client, args)
 
 public callback(client, bool:success, errorCode, any:data)
 {
-	if (sources[client] == SM_REPLY_TO_CHAT && client != 0 && !IsClientInGame(client)) return;
+	if (client != 0 && !IsClientInGame(client)) return;
 
 	SetCmdReplySource(sources[client]);
 	if (success) ReplyToCommand(client, "\x07FFF047Your announcement was successfully posted.");
