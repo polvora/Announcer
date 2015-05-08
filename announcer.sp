@@ -80,6 +80,8 @@ public callback(client, bool:success, errorCode, any:data)
 	else
 	{
 		if (errorCode == 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
+		else if (errorCode == 0x02) ReplyToCommand(client, "\x07FFF047There was a timeout in your request, try again.");
+		else if (errorCode == 0x11) ReplyToCommand(client, "\x07FFF047There was an auth error, try again to solve it.");
 		else ReplyToCommand(client, "\x07FFF047There was an error \x010x%02x \x07FFF047while posting your announcement :(", errorCode);
 	}
 }
@@ -131,28 +133,19 @@ GetBodySting(client, String:body[], maxSize)
 		decl String:IP[32];
 		decl String:PORT[16];
 		decl String:pw[32];
+		decl String:map[64];
 		
 		GetServerIP(IP, sizeof(IP));
 		GetConVarString(FindConVar("hostport"), PORT, sizeof(PORT));
 		GetConVarString(FindConVar("sv_password"), pw, sizeof(pw));
+		GetCurrentMap(map, sizeof map);
 		
 		if (GetConVarBool(cvarServerInfo))
 		{
 			decl String:hostname[64];
 			GetConVarString(FindConVar("hostname"), hostname, sizeof(hostname));
 			
-			Format(buffer, sizeof(buffer), "[b]%s[/b] (%i/%i) - [i]%s:%s", hostname, GetClientCount(), MaxClients, IP, PORT);
-			StrCat(body, maxSize, buffer);
-			
-			if (!GetConVarBool(cvarRevealPass)) // ! = NOT
-				Format(buffer, sizeof(buffer), "[/i]");
-			else
-			{
-				if (StrEqual(pw, ""))
-					Format(buffer, sizeof(buffer), "[/i]");
-				else
-					Format(buffer, sizeof(buffer), " | [b]PW: %s[/b][/i]", pw);
-			}
+			Format(buffer, sizeof(buffer), "[b]%s[/b] (%i/%i) - [i]@%s[/i]", hostname, GetClientCount(), MaxClients, map);
 			StrCat(body, maxSize, buffer);
 			StrCat(body, maxSize, "\n");
 		}
@@ -169,6 +162,14 @@ GetBodySting(client, String:body[], maxSize)
 			Format(buffer, sizeof(buffer), "&pw=%s", pw);
 			StrCat(finalRedirectURL, sizeof(finalRedirectURL), buffer);
 		}
+		
+		if (!GetConVarBool(cvarRevealPass) || StrEqual(pw, ""))
+			Format(buffer, sizeof(buffer), "[i]connect [b]%s:%s[/b][/i]", IP, PORT);
+		else
+			Format(buffer, sizeof(buffer), "[i]connect [b]%s:%s[/b]; password [b]%s[/b][/i]", IP, PORT, pw);
+		StrCat(body, maxSize, buffer);
+		StrCat(body, maxSize, "\n");
+		
 		Format(buffer, sizeof(buffer), "[url=%s][h1][b][u][Join Server][/u][/b][/h1][/url]", finalRedirectURL);
 		StrCat(body, maxSize, buffer);
 		StrCat(body, maxSize, "\n");

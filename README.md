@@ -75,3 +75,8 @@ If you want to compile the code yourself you have to add the include file `steam
 > * More detailed information on error messages.
 > * Added sm\_announce as an alias for sm\_an.
 > * Long profile names are now displayed correctly on the announcements description.
+
+> [08/05/2015] v1.3
+
+> * More detailed response phrases.
+> * Added map name and connect command to the announcement description.
