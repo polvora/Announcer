@@ -80,3 +80,4 @@ If you want to compile the code yourself you have to add the include file `steam
 
 > * More detailed response phrases.
 > * Added map name and connect command to the announcement description.
+> * Fixed error of an invalid client index thrown when client disconnected before receiving the response.
