@@ -81,7 +81,7 @@ public callback(client, bool:success, errorCode, any:data)
 	{
 		if (errorCode == 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
 		else if (errorCode == 0x02) ReplyToCommand(client, "\x07FFF047There was a timeout in your request, try again.");
-		else if (errorCode == 0x11) ReplyToCommand(client, "\x07FFF047There was an auth error, try again to solve it.");
+		else if (errorCode == 0x11) ReplyToCommand(client, "\x07FFF047Session expired, retry to reconnect.");
 		else ReplyToCommand(client, "\x07FFF047There was an error \x010x%02x \x07FFF047while posting your announcement :(", errorCode);
 	}
 }
