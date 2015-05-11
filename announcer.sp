@@ -120,7 +120,6 @@ GetBodySting(client, String:body[], maxSize)
 		GetClientAuthId(client, AuthId_Steam2, clientSteamID, sizeof(clientSteamID));
 		
 		String_ToUpper(clientName, clientName, sizeof(clientName));
-		
 		Format(buffer, sizeof(buffer), "[b][url=http://steamcommunity.com/profiles/%s]%s[/url][/b]", clientCommunityID, clientName);
 		StrCat(body, maxSize, buffer);
 		Format(buffer, sizeof(buffer), " - [i]%s[/i]", clientSteamID);
