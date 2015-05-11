@@ -4,7 +4,7 @@
 #include <steamcore>
 
 #define PLUGIN_URL ""
-#define PLUGIN_VERSION "1.2"
+#define PLUGIN_VERSION "1.3"
 #define PLUGIN_NAME "Announcer"
 #define PLUGIN_AUTHOR "Statik"
 
@@ -120,6 +120,7 @@ GetBodySting(client, String:body[], maxSize)
 		GetClientAuthId(client, AuthId_Steam2, clientSteamID, sizeof(clientSteamID));
 		
 		String_ToUpper(clientName, clientName, sizeof(clientName));
+		
 		Format(buffer, sizeof(buffer), "[b][url=http://steamcommunity.com/profiles/%s]%s[/url][/b]", clientCommunityID, clientName);
 		StrCat(body, maxSize, buffer);
 		Format(buffer, sizeof(buffer), " - [i]%s[/i]", clientSteamID);
