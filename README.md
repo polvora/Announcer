@@ -17,6 +17,8 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 * `sc_password` Steam account password.
 
 #### Optional
+* `an_uppercase` Changes the announcement title to upper-case. _(default = 0)_
+
 * `an_callerinfo` Displays client profile and Steam ID in the announcement description. _(default = 1)_
 
 * `an_serverinfo`  Displays server name, n° of players and IP in the announcement description. _(default = 1)_
@@ -84,3 +86,7 @@ If you want to compile the code yourself you have to add the include file `steam
 > * More detailed response phrases.
 > * Added map name and connect command to the announcement description.
 > * Fixed error of an invalid client index thrown when client disconnected before receiving the response.
+
+> [12/06/2015] v1.4
+
+> * Added Cvar an_uppercase.

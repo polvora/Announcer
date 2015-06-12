@@ -4,7 +4,7 @@
 #include <steamcore>
 
 #define PLUGIN_URL ""
-#define PLUGIN_VERSION "1.3"
+#define PLUGIN_VERSION "1.4"
 #define PLUGIN_NAME "Announcer"
 #define PLUGIN_AUTHOR "Statik"
 
@@ -21,6 +21,7 @@ new String:announcements[32][128];
 new ReplySource:sources[32];
 
 new Handle:cvarSteamGroupID;
+new Handle:cvarUpperCase;
 new Handle:cvarCallerInfo;
 new Handle:cvarServerInfo;
 new Handle:cvarRevealPass;
@@ -36,6 +37,7 @@ public OnPluginStart()
 	// Convars
 	CreateConVar("announcer_version", PLUGIN_VERSION, "Announcer Version", FCVAR_PLUGIN | FCVAR_SPONLY | FCVAR_DONTRECORD | FCVAR_NOTIFY);
 	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.", FCVAR_PLUGIN);
+	cvarUpperCase = CreateConVar("an_uppercase", "0", "Changes the announcement title to upper-case.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
 	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
@@ -62,10 +64,13 @@ public Action:cmdAnnounce(client, args)
 	}
 	else GetCmdArgString(announcements[client], sizeof(announcements[]));
 	
-	sources[client] = GetCmdReplySource();
+	if (GetConVarBool(cvarUpperCase))
+		String_ToUpper(announcements[client], announcements[client], sizeof announcements[]);
 	
 	decl String:body[2048];
 	GetBodySting(client, body, sizeof(body));
+	
+	sources[client] = GetCmdReplySource();
 	
 	SteamGroupAnnouncement(client, announcements[client], body, steamGroup, callback);
 	return Plugin_Handled;
@@ -190,7 +195,8 @@ GetBodySting(client, String:body[], maxSize)
  * @param size                          Max Size of the Output string
  * @noreturn
  */
-stock String_ToUpper(const String:input[], String:output[], size) // SMLib
+// SMLib https://forums.alliedmods.net/showthread.php?t=148387
+stock String_ToUpper(const String:input[], String:output[], size) 
 {
         size--;
 
