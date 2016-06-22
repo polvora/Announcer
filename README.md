@@ -9,7 +9,7 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 
 ### ConVars
 ####Mandatory
-* `an_steamgroupid` ID of the Steam Group where announcements are meant to be posted. [Obtain your group ID here](http://fennec.limetech.org/groupid.php). _(default = "")_
+* `an_steamgroupid` ID of the Steam Group where announcements are meant to be posted. [How to get your group ID](https://support.multiplay.co.uk/support/solutions/articles/1000202859-how-can-i-find-my-steam-group-64-id-). _(default = "")_
 
 #####From SteamCore
 
