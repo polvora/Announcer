@@ -35,14 +35,14 @@ public OnPluginStart()
 	RegAdminCmd("sm_an", cmdAnnounce, ADMFLAG_CONFIG, "Posts a new announcement to a Steam group.");
 	
 	// Convars
-	CreateConVar("announcer_version", PLUGIN_VERSION, "Announcer Version", FCVAR_PLUGIN | FCVAR_SPONLY | FCVAR_DONTRECORD | FCVAR_NOTIFY);
-	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.", FCVAR_PLUGIN);
-	cvarUpperCase = CreateConVar("an_uppercase", "0", "Changes the announcement title to upper-case.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.", FCVAR_PLUGIN, true, 0.0, true, 1.0);
-	cvarRedirectURL = CreateConVar("an_redirecturl", "", "URL to parse HTTP GET requests to Steam requests.", FCVAR_PLUGIN);
-	cvarExtraInfo = CreateConVar("an_extrainfo", "", "Extra text to add at the start of the announcement description.", FCVAR_PLUGIN);
+	CreateConVar("announcer_version", PLUGIN_VERSION, "Announcer Version", FCVAR_SPONLY | FCVAR_DONTRECORD | FCVAR_NOTIFY);
+	cvarSteamGroupID = CreateConVar("an_steamgroupid", "", "Steam group community ID to make announcements.", 0);
+	cvarUpperCase = CreateConVar("an_uppercase", "0", "Changes the announcement title to upper-case.", 0, true, 0.0, true, 1.0);
+	cvarCallerInfo = CreateConVar("an_callerinfo", "1", "Toggles information of caller displayed in announcement body.", 0, true, 0.0, true, 1.0);
+	cvarServerInfo = CreateConVar("an_serverinfo", "1", "Toggles information of server displayed in announcement body.", 0, true, 0.0, true, 1.0);
+	cvarRevealPass = CreateConVar("an_revealpassword", "0", "If set, server password will be shown on server information.", 0, true, 0.0, true, 1.0);
+	cvarRedirectURL = CreateConVar("an_redirecturl", "", "URL to parse HTTP GET requests to Steam requests.", 0);
+	cvarExtraInfo = CreateConVar("an_extrainfo", "", "Extra text to add at the start of the announcement description.", 0);
 }
 
 public Action:cmdAnnounce(client, args)
