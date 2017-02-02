@@ -4,7 +4,7 @@
 #include <steamcore>
 
 #define PLUGIN_URL ""
-#define PLUGIN_VERSION "1.4"
+#define PLUGIN_VERSION "1.5"
 #define PLUGIN_NAME "Announcer"
 #define PLUGIN_AUTHOR "Statik"
 
