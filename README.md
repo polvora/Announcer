@@ -57,7 +57,7 @@ _**DON'T FORGET TO SETUP STEAMCORE**_
 When you fulfil the requirements, just install as any other plugin, copy announcer.smx inside the plugins folder in your sourcemod directory.
 
 ### Download
-Compiled version: [announcer.smx](https://bitbucket.org/Polvora/announcer/downloads/announcer.smx). Also available in downloads section.  
+Compiled versions: [announcer.smx](https://github.com/polvora/Announcer/releases).
 
 If you want to compile the code yourself you have to add the include file `steamcore.inc` (from SteamCore, duh) inside `scripting/include` and then compile. _(You can't use includes with the online compiler)_
 
@@ -90,3 +90,7 @@ If you want to compile the code yourself you have to add the include file `steam
 > [12/06/2015] v1.4
 
 > * Added Cvar an_uppercase.
+
+> * [02/02/2017] v1.5
+
+> * **[steamcore]** Fixed critical bug caused by outdated method to post annoucements.
