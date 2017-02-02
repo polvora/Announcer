@@ -91,6 +91,6 @@ If you want to compile the code yourself you have to add the include file `steam
 
 > * Added Cvar an_uppercase.
 
-> * [02/02/2017] v1.5
+> [02/02/2017] v1.5
 
 > * **[steamcore]** Fixed critical bug caused by outdated method to post annoucements.
