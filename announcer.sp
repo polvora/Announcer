@@ -72,23 +72,19 @@ public Action:cmdAnnounce(client, args)
 	
 	sources[client] = GetCmdReplySource();
 	
-	SteamGroupAnnouncement(client, announcements[client], body, steamGroup, callback);
+	SteamCommunityGroupAnnounce(announcements[client], body, steamGroup, client);
 	return Plugin_Handled;
 }
 
-public callback(client, bool:success, errorCode, any:data)
+public OnCommunityGroupAnnounceResult(const String:title[], const String:body[], const String:group[], errorCode, any:client)
 {
 	if (client != 0 && !IsClientInGame(client)) return;
 
 	SetCmdReplySource(sources[client]);
-	if (success) ReplyToCommand(client, "\x07FFF047Your announcement was successfully posted.");
-	else
-	{
-		if (errorCode == 0x01) ReplyToCommand(client, "\x07FFF047Server is busy with another task at this time, try again in a few seconds.");
-		else if (errorCode == 0x02) ReplyToCommand(client, "\x07FFF047There was a timeout in your request, try again.");
-		else if (errorCode == 0x11) ReplyToCommand(client, "\x07FFF047Session expired, retry to reconnect.");
-		else ReplyToCommand(client, "\x07FFF047There was an error \x010x%02x \x07FFF047while posting your announcement :(", errorCode);
-	}
+	if (errorCode == 0x00) ReplyToCommand(client, "\x07FFF047Your announcement was successfully posted.");
+	else if (errorCode == 0x01) ReplyToCommand(client, "\x07FFF047Server logged out, try again in a few seconds.");
+	else if (errorCode == 0x02 || errorCode == 0x03) ReplyToCommand(client, "\x07FFF047There was a timeout in your request, try again.");
+	else ReplyToCommand(client, "\x07FFF047There was an error \x010x%02x \x07FFF047while posting your announcement :(", errorCode);
 }
 
 public OnClientDisconnect(client)
