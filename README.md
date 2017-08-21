@@ -56,7 +56,7 @@ Compiled versions: [announcer.smx](https://github.com/polvora/Announcer/releases
 
 If you want to compile the code yourself you have to add the include file `steamcore.inc` (from SteamCore, duh) inside `scripting/include` and then compile. _(You can't use includes with the online compiler)_
 
-###Known Bugs
+### Known Bugs
 * When a profile name contains a website its not displayed, instead just the profile permalink is displayed. This happens beacuase there can not be an URL inside an URL, and i can't do anything about it.
 
 > ###Changelog
