@@ -44,7 +44,7 @@ And finally this page, would redirect you to the server:
     steam://connect/233.143.43.54:27015/
 
 ### Install
-#####Requirements
+##### Requirements
 * [A working version of Sourcemod](http://www.sourcemod.net/downloads.php).
 * [SteamCore library plugin](https://github.com/polvora/SteamCore).
 
