@@ -1,4 +1,4 @@
-#Announcer
+# Announcer
 Plugin to post Steam group announcements from the comfort of the game chat.
 
 ![Example Command](https://bitbucket.org/Polvora/announcer/downloads/example1.png)  
