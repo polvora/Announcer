@@ -8,13 +8,8 @@ Plugin to post Steam group announcements from the comfort of the game chat.
 * `sm_an [message]`  Posts an announcements with the message as title, if a message is not specified it will post the previous announcement.
 
 ### ConVars
-####Mandatory
+#### Mandatory
 * `an_steamgroupid` ID of the Steam Group where announcements are meant to be posted. [How to get your group ID](https://support.multiplay.co.uk/support/solutions/articles/1000202859-how-can-i-find-my-steam-group-64-id-). _(default = "")_
-
-#####From SteamCore
-
-* `sc_username` Steam account username.
-* `sc_password` Steam account password.
 
 #### Optional
 * `an_uppercase` Changes the announcement title to upper-case. _(default = 0)_
@@ -94,3 +89,7 @@ If you want to compile the code yourself you have to add the include file `steam
 > [02/02/2017] v1.5
 
 > * **[steamcore]** Fixed critical bug caused by outdated method to post announcements.
+
+> [21/08/2017] v1.6
+
+> * Updated to the new SteamCore syntax.
